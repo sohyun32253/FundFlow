@@ -1,0 +1,21 @@
+{
+  "name": "tumblbug-coding-test-server",
+  "version": "1.0.0",
+  "description": "텀블벅 프론트엔드 코딩 테스트용 Mock API 서버",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "json-server": "^0.17.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
