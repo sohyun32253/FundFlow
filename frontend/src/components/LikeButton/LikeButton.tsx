@@ -21,18 +21,24 @@ export default function LikeButton({
         return savedLiked ? JSON.parse(savedLiked) : defaultLiked;
       });
 
-  const handleClick = () => {
+    const [toast, setToast] = useState<string | null>(null);
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
     setLiked((prev : any) => {
       const next = !prev;
 
       localStorage.setItem(storageKey, JSON.stringify(next));
 
-      alert(
+      setToast(
         next
           ? "좋아요한 프로젝트에 추가되었습니다"
           : "취소되었습니다."
       );
-
+  
+      // 2~3초 후 사라지게
+      setTimeout(() => setToast(null), 2500);
+  
       onToggle?.(next);
       return next;
     });
@@ -72,6 +78,8 @@ export default function LikeButton({
         />
         </svg>
       )}
+      {toast && <div className="toast">{toast}</div>}
     </button>
+    
   );
 }

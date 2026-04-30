@@ -1,186 +1,223 @@
-.project_grid {
+/* .project_grid {
   grid-template-columns: 1fr;
-}
+} */
 
 .project_card_article {
-    margin: 0;
-    padding: 0;
-    flex: 0 0 auto;
+  margin: 0;
+  padding: 0;
+  flex: 0 0 auto;
+}
+
+.project_card_container {
+  display: flex;
+}
+
+.project-card__inner {
+  position: relative;
+  padding: 20px 0 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.project_card {
+  width: 100%;
+  margin-right: 12px;
+}
+
+.project-card__link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.project-card__image-wrap {
+  position: relative;
+  width: 130px;
+}
+
+.project-card__image-link {
+  display: block;
+}
+
+.project-card__image {
+  width: 100%;
+  /* height: auto; */
+  border-radius: 8px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.adult-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.adult-badge svg {
+  display: block;
+  flex-shrink: 0;
+  width: 17px;
+  height: 20px;
+}
+
+.project-card__content {
+  margin-bottom: 27px;
+  height: 88px;
+}
+
+.project-card__content p {
+  font-size: 11px;
+  color: #545454;
+  margin: 8px 0 4px;
+}
+
+.first_content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.creator {
+  margin: 0;
+}
+
+.ad_box {
+  border: 1px solid #e4e4e4;
+  color: #e4e4e4;
+  border-radius: 5px;
+  font-size: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1px 2px;
+}
+
+.text_box {
+  height: 88px;
+}
+
+.project-card__content h2 {
+  font-size: 14px;
+  color: #1c1c1c;
+  margin: 0 0 6px;
+}
+
+.short_desc {
+  display: none;
+  margin: 0;
+}
+
+.badge_wrapper {
+  margin: 3px 0 6px;
+  min-height: 18px;
+  display: flex;
+  align-items: center;
+}
+
+.project_badges {
+  font-weight: bold;
+  color: #545454;
+  font-size: 11px;
+  display: flex;
+  gap: 6px;
+}
+
+.etc_badge {
+  box-sizing: border-box;
+  padding: 0 6px;
+  height: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+  background: #e4e4e4;
+}
+
+.creator_badge {
+  width: 60px;
+  height: 18px;
+}
+
+.project-card__stats {
+  margin-bottom: 6px;
+}
+
+.stats_wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin: 12px 0;
+}
+
+.project-card__stats-left {
+  display: flex;
+}
+
+.project-card__stats span {
+  font-size: 14px;
+}
+
+.project-card__percent {
+  color: #fd5744;
+  font-weight: bold;
+  margin-right: 4px;
+}
+
+.project-card__amount {
+  color: #545454;
+}
+
+.project-card__d-day {
+  font-weight: bold;
+  color: #545454;
+}
+
+.project-card__progress {
+  width: 100%;
+  height: 4px;
+  overflow: hidden;
+  background: #929292;
+}
+
+.progress_gauge {
+  height: 100%;
+  background: #fd5744;
+}
+
+.notification_status {
+  margin-bottom: 10px;
+}
+
+@media (min-width: 768px) {
+  .project_grid {
+    grid-template-columns: repeat(2, 1fr);
   }
-  
-  .project_card_container {
-    display: flex;
-  }
-  
-  .project-card__inner {
-    position: relative;
-    padding: 20px 0 10px;
-    width: 100%;
-  }
-  
-  .project-card__link {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-  }
-  
-  .project_card {
-    width: 100%;
-    margin-right: 12px;
-  }
-  
+
   .project-card__image-wrap {
     position: relative;
+    width: auto;
   }
-  
-  .project-card__image-link {
-    display: block;
-  }
-  
-  .project-card__image {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
+
+  .project-card__inner{
     display: block;
   }
 
-  .adult-badge {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-  }
-  
-  .adult-badge svg {
+  .short_desc {
     display: block;
-    flex-shrink: 0;
-    width: 17px;
-    height: 20px;
   }
-  
-  .project-card__content {
-    margin-bottom: 27px;
-    height: 88px;
-  }
-  
-  .project-card__content p {
-    font-size: 11px;
-    color: #545454;
-    margin: 8px 0 4px;
+}
+
+@media (min-width: 1024px) {
+  .project_grid {
+    grid-template-columns: repeat(4, 1fr);
   }
 
-  .notification_container{
-    color: #fd5744;
-    font-weight: bold;
-    font-size: 14px;
+  .project-card__image-wrap {
+    position: relative;
+    width: auto;
   }
 
-  .notification_status{
-    margin-bottom: 10px;
+  .project-card__inner{
+    display: block;
   }
-
-  .notification_btn{
-    border: 1px solid #fd5744;
-    border-radius: 10px;
-    padding: 10px 40px;
-    width: 100%;
-    background: none;
-    color: #fd5744;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .creator{
-    margin: 0;
-  }
-
-  .first_content{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .ad_box{
-    border: 1px solid #e4e4e4;
-    color: #e4e4e4;
-    border-radius: 5px;
-    font-size: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1px 2px;
-  }
-  
-  .project-card__content h2 {
-    font-size: 14px;
-    color: #1c1c1c;
-    margin: 0 0 6px;
-  }
-  
-  .project-card__stats span {
-    font-size: 14px;
-  }
-
-  .stats_wrapper{
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 12px;
-  }
-
-  .short_desc{
-    display: none;
-    margin: 0;
-  }
-  
-  .project-card__stats {
-    
-    margin-bottom: 6px;
-  }
-  
-  .project-card__stats-left {
-    display: flex;
-  }
-  
-  .project-card__percent {
-    color: #fd5744;
-    font-weight: bold;
-    margin-right: 4px;
-  }
-  
-  .project-card__amount {
-    color: #545454;
-  }
-  
-  .project-card__d-day {
-    font-weight: bold;
-    color: #545454;
-  }
-  
-  .project-card__progress {
-    width: 100%;
-    height: 4px;
-    overflow: hidden;
-    background: #929292;
-  }
-
-  .progress_gauge{
-    height: 100%;
-    background: #fd5744;
-  }
-  
-  @media (min-width: 768px) {
-    .project_grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .short_desc{
-      display: block;
-    }
-  }
-  
-  @media (min-width: 1024px) {
-    .project_grid {
-      grid-template-columns: repeat(4, 1fr);
-    }
-  }
+}
