@@ -1,8 +1,8 @@
 import type { Project } from "../../types/project";
+import ProjectBadges from "../ProjectBadge/ProjectBadge";
 import { formatAmount, getRemainingDaysFromTTL } from "../../utils/format";
 import LikeButton from "../LikeButton/LikeButton";
 import NotificationButton from "../NotificationButton/NotificationButton";
-import GoodCreatorBadge from "../../assets/good_creator.png";
 import "./ProjectCard.css";
 
 interface ProjectCardProps {
@@ -11,96 +11,6 @@ interface ProjectCardProps {
 
 interface PrelaunchedStatsProps {
   project: Project;
-}
-
-type Badge =
-  | {
-      key: string;
-      type: "image";
-      image: string;
-      alt: string;
-      className: string;
-    }
-  | {
-      key: string;
-      type: "text";
-      label: string;
-      className: string;
-    };
-
-function getRemainingDays(timeToLive: number | null) {
-  if (timeToLive === null) return null;
-
-  const DAY = 1000 * 60 * 60 * 24;
-  return Math.floor(timeToLive / DAY);
-}
-
-function formatFundingBadge(amount: number) {
-  if (amount < 1_000_000) return null;
-
-  if (amount < 10_000_000) {
-    return `${Math.floor(amount / 10_000)}만 원+`;
-  }
-
-  if (amount < 100_000_000) {
-    return `${Math.round(amount / 10_000_000) / 10}천만 원+`;
-  }
-
-  return `${Math.round((amount / 100_000_000) * 10) / 10}억 원+`;
-}
-
-function getProjectBadges(project: Project): Badge[] {
-  const days = getRemainingDays(project.timeToLive);
-
-  const badges: Badge[] = [];
-
-  if (project.isStarCreator) {
-    badges.push({
-      key: "starCreator",
-      type: "image",
-      image: GoodCreatorBadge,
-      alt: "좋은창작자",
-      className: "badge_star",
-    });
-  }
-
-  if (days === 0) {
-    badges.push({
-      key: "todayEnd",
-      type: "text",
-      label: "오늘 마감",
-      className: "badge_today",
-    });
-  }
-
-  if (days !== null && days > 0) {
-    badges.push({
-      key: "remainingDays",
-      type: "text",
-      label: `${days}일 남음`,
-      className: "badge_default",
-    });
-  }
-
-  if (project.amount >= 1_000_000) {
-    badges.push({
-      key: "fundingAmount",
-      type: "text",
-      label: `${Math.floor(project.amount / 10_000)}만 원+`,
-      className: "badge_default",
-    });
-  }
-
-  if (project.editorPick) {
-    badges.push({
-      key: "editorPick",
-      type: "text",
-      label: "PICK",
-      className: "badge_default",
-    });
-  }
-
-  return badges.slice(0, 2);
 }
 
 function PrelaunchedStats({ project }: PrelaunchedStatsProps) {
@@ -159,31 +69,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             />
             {project.isOnlyAdult && (
               <div className="adult-badge" aria-label="성인 인증 필요">
-                <svg
-                  width="17"
-                  height="20"
-                  viewBox="0 0 17 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M0 1.07987C5.46571 -0.359958 11.5343 -0.359958 17 1.07987C17 4.2547 17 7.4295 17 10.6043C17 15.3663 4.9983 20 4.9983 20C4.9983 20 0 15.3672 0 10.6043C0 7.4295 0 4.2547 0 1.07987Z"
-                    fill="#E53C41"
-                  />
-                  <ellipse
-                    cx="8.51052"
-                    cy="6.0047"
-                    rx="1.70486"
-                    ry="1.68902"
-                    fill="white"
-                  />
-                  <path
-                    d="M4.6748 11.7052C4.6748 9.83955 6.18721 8.32715 8.05285 8.32715C9.91849 8.32715 11.4309 9.83955 11.4309 11.7052H4.6748Z"
-                    fill="white"
-                  />
-                </svg>
+              <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M0 1.07987C5.46571 -0.359958 11.5343 -0.359958 17 1.07987C17 4.2547 17 7.4295 17 10.6043C17 15.3663 8.49983 20 8.49983 20C8.49983 20 0 15.3672 0 10.6043C0 7.4295 0 4.2547 0 1.07987Z" fill="#E53C41"></path><ellipse cx="8.51052" cy="6.0047" rx="1.70486" ry="1.68902" fill="white"></ellipse><path d="M4.6748 11.7052C4.6748 9.83955 6.18721 8.32715 8.05285 8.32715H8.96862C10.8343 8.32715 12.3467 9.83955 12.3467 11.7052H4.6748Z" fill="white"></path></svg>
               </div>
             )}
             {/* 좋아요 버튼 */}
@@ -212,28 +98,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             </div>
           </div>
 
-          <div className="badge_wrapper">
-            <div className="project_badges">
-              {getProjectBadges(project).map((badge) =>
-                badge.type === "image" ? (
-                  <div className="creator_badge">
-                    <img
-                      key={badge.key}
-                      src={badge.image}
-                      alt={badge.alt}
-                      className={`creator_badge ${badge.className}`}
-                    />
-                  </div>
-                ) : (
-                  <div className="etc_badge">
-                    <span key={badge.key} className={`project_badge ${badge.className}`}>
-                      {badge.label}
-                    </span>
-                  </div>
-                )
-              )}
-            </div>
-          </div>
+          <ProjectBadges project={project} />
 
           <div className="project-card_stats_box">
             {/* 공개 예정 or 진행 중인 프로젝트 여부 */}

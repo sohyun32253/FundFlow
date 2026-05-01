@@ -12,8 +12,7 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
     className="project_grid"
     style={{
       display: "grid",
-      gap: "12px",
-      maxWidth: "1024px",
+      gap: "16px",
       margin: "0 auto",
     }}
     >

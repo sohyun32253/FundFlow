@@ -5,7 +5,7 @@ export default function ProjectListPage() {
   const { projects, loading, error, reload } = useProjects();
 
   return (
-    <main style={{ maxWidth: 1100, margin: "0 auto", padding: "24px 16px" }}>
+    <main style={{ margin: "0 auto", padding: "24px 16px", maxWidth: "1160px" }}>
       <h1 style={{ marginTop: 0 }}>프로젝트 목록</h1>
 
       {loading ? <p>불러오는 중...</p> : null}
