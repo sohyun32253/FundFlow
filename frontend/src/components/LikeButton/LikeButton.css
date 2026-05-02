@@ -35,10 +35,3 @@
     bottom: 1%;
   }
 }
-
-@media (min-width: 1024px) {
-  .like-button {
-    right: 1%;
-    bottom: 1%;
-  }
-}

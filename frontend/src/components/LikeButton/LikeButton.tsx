@@ -9,8 +9,8 @@ interface LikeButtonProps {
 }
 
 export default function LikeButton({
-    projectId,
-    className = "",
+  projectId,
+  className = "",
   defaultLiked = false,
   onToggle,
 }: LikeButtonProps) {
@@ -32,7 +32,7 @@ export default function LikeButton({
 
       setToast(
         next
-          ? "좋아요한 프로젝트에 추가되었습니다"
+          ? "좋아요한 프로젝트에 추가되었습니다."
           : "취소되었습니다."
       );
   

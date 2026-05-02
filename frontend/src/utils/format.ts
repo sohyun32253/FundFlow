@@ -1,4 +1,4 @@
-// src/utils/format.ts
+// 남은 일 수 포맷팅
 export const formatAmount = (amount: number) => {
     return amount.toLocaleString("ko-KR");
   };

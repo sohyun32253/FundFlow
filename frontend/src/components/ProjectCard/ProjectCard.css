@@ -1,6 +1,7 @@
+/* mobile */
 .project_grid {
   display: grid;
-  grid-template-columns: 1fr;  /* 모바일 기본 */
+  grid-template-columns: 1fr;
   gap: 16px;
 }
 
@@ -15,11 +16,10 @@
 }
 
 .project-card__inner {
-  position: relative;
-  padding: 20px 0 10px;
-  width: 100%;
   display: flex;
-  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
 }
 
 .project_card {
@@ -35,42 +35,42 @@
 
 .project-card__image-wrap {
   position: relative;
-  width: auto;
-}
-
-.project-card__image-link {
-  display: block;
+  flex: 0 0 110px;
+  width: 110px;
 }
 
 .project-card__image {
+  display: block;
   width: 100%;
-  height: auto;
-  border-radius: 8px;
   aspect-ratio: 1 / 1;
+  height: auto;
   object-fit: cover;
+  border-radius: 8px;
 }
 
+/* 성인인증 표시 */
 .adult-badge {
   position: absolute;
-  top: 6px;
-  right: 6px;
-  /* width, height 아예 제거 */
+  top: 6%;
+  right: 6%;
 }
 
 .adult-badge svg {
-  /* 여기도 width/height 오버라이드 제거 */
   display: block;
 }
 
+.mobile_right_content {
+  flex: 1;
+  min-width: 0;
+}
+
 .project-card__content {
-  /* margin-bottom: 27px; */
- height: auto;
+  height: auto;
 }
 
 .project-card__content p {
-  font-size: 11px;
   color: #545454;
-  margin: 8px 0 4px;
+  margin: 0;
 }
 
 .first_content {
@@ -81,6 +81,7 @@
 
 .creator {
   margin: 0;
+  font-size: 12px;
 }
 
 .ad_box {
@@ -94,23 +95,27 @@
   padding: 1px 2px;
 }
 
-/* .text_box {
-  height: 88px;
-} */
-
 .project-card__content h2 {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
-  line-height: 120%;
+  line-height: 1.2;
   color: #1c1c1c;
   margin: 0 0 6px;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .short_desc {
   display: none;
   margin: 0;
+  overflow: hidden;
+  font-size: 13px;
 }
 
+/* 뱃지 모음 */
 .badge_wrapper {
   margin: 3px 0 6px;
   min-height: 18px;
@@ -128,18 +133,11 @@
   white-space: nowrap;
 }
 
-
-
-.adult_icon {
-  width: 17px;
-  height: auto; /* 핵심 */
-}
-
 .badge_unit {
   margin-left: 2px;
 }
+
 .etc_badge {
-  /* box-sizing: border-box; */
   padding: 0 6px;
   height: 18px;
   display: inline-flex;
@@ -148,7 +146,6 @@
   border-radius: 2px;
   background: #e4e4e4;
   white-space: nowrap;
-  word-spacing: 2px;
   flex-shrink: 0;
 }
 
@@ -159,7 +156,7 @@
   word-spacing: normal;
 }
 
-.badge_today{
+.badge_today {
   background: #FFF4F2;
 }
 
@@ -172,6 +169,7 @@
   margin-bottom: 6px;
 }
 
+/* 게이지 상태 바 */
 .stats_wrapper {
   display: flex;
   justify-content: space-between;
@@ -213,93 +211,60 @@
   background: #fd5744;
 }
 
-.notification_btn{
+.notification_btn {
   display: none;
 }
 
 .notification_status {
-  margin-bottom: 10px;
+  margin: 12px 0;
 }
 
-.project-card__inner {
-  display: flex;
-  gap: 12px;
-  width: 100%;
-  padding: 0;
-}
-
-.project-card__image-wrap {
-  position: relative;
-  flex: 0 0 110px;
-  width: 110px;
-}
-
-.project-card__image {
-  display: block;
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  height: auto;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-.mobile_right_content {
-  flex: 1;
-  min-width: 0;
-}
-
+/* Tablet */
 @media (min-width: 768px) {
   .project_grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .project-card__image-wrap {
-    position: relative;
-    width: 100%;
+  .project-card__inner {
+    display: block;
+    padding: 20px 0 10px;
   }
 
-  .project-card__inner {
-    padding: 20px 0 10px;
-    display: block;
+  .project-card__image-wrap {
+    width: 100%;
+    flex: none;
   }
 
   .project-card__content {
     margin-bottom: 27px;
-   height: auto;
   }
 
-  .notification_btn{
+  .notification_btn {
     display: block;
+  }
+
+  .project-card__content p {
+    color: #545454;
+    margin: 8px 0 4px;
   }
   
-
   .short_desc {
-    display: block;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 120%;
   }
 }
 
+/* Desktop */
 @media (min-width: 1024px) {
   .project_grid {
     grid-template-columns: repeat(4, 1fr);
   }
 
-  .project-card__inner {
-    padding: 20px 0 10px;
-    display: block;
-  }
-
-  .project-card__image-wrap {
-    position: relative;
-    width: 100%;
-  }
-
-  .notification_btn{
-    display: block;
-  }
-  
-
-  .project-card__content {
-    margin-bottom: 27px;
-   height: auto;
+  .adult-badge {
+    top: 4%;
+    right: 4%;
   }
 }
