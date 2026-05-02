@@ -1,0 +1,46 @@
+.notification_btn{
+    border-radius: 8px;
+    border: 1px solid #fd5744;
+    width: 100%;
+    background: none;
+    cursor: pointer;
+    padding: 10px 40px;
+  }
+
+  .notification_container{
+    color: #fd5744;
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  .notification_btn--active {
+    border-color: #e4e4e4; 
+  }
+
+  .notification_btn > div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .notifi_default{
+    color: #fd5744;
+  }
+
+  .notifi_ing{
+    color: #545454;
+  }
+
+  .toast {
+    position: fixed;
+    z-index: 3;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+
