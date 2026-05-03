@@ -1,0 +1,140 @@
+/* mobile */
+.skeleton-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px 12px;
+  }
+  
+  .skeleton-card {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  
+  /* 공통 속성 */
+  .skeleton-image,
+  .skeleton-creator,
+  .skeleton-title,
+  .skeleton-shortDescription,
+  .skeleton-badge,
+  .skeleton-stats,
+  .skeleton-bar {
+    background: linear-gradient(
+      90deg,
+      #eee 25%,
+      #f5f5f5 50%,
+      #eee 75%
+    );
+    background-size: 300% 100%;
+    animation: shimmer 1.4s infinite linear;
+    border-radius: 4px;
+  }
+  
+  .skeleton-image {
+    flex: 0 0 110px;
+    width: 110px;
+    aspect-ratio: 1 / 1;
+    border-radius: 8px;
+  }
+  
+  .skeleton_right_content {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .skeleton-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+  
+  .skeleton-creator {
+    width: 30%;
+    height: 14px;
+  }
+  
+  .skeleton-title {
+    width: 60%;
+    height: 18px;
+  }
+  
+  .skeleton-shortDescription {
+    display: none;
+  }
+  
+  .skeleton-badge {
+    width: 45%;
+    height: 16px;
+    margin: 4px 0 6px;
+  }
+  
+  .skeleton-stats-box {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  .skeleton-stats {
+    width: 100%;
+    height: 15px;
+    margin-bottom: 6px;
+  }
+  
+  .skeleton-bar {
+    width: 100%;
+    height: 3px;
+    border-radius: 999px;
+  }
+  
+  /* 스켈레톤 애니메이션 */
+  @keyframes shimmer {
+    0% {
+      background-position: 100% 0;
+    }
+    100% {
+      background-position: -100% 0;
+    }
+  }
+  
+  /* Tablet */
+  @media (min-width: 768px) {
+    .skeleton-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px 14px;
+    }
+  
+    .skeleton-card {
+      flex-direction: column;
+      gap: 12px;
+      align-items: normal;
+    }
+  
+    .skeleton-image {
+      width: 100%;
+      flex: none;
+    }
+  
+    .skeleton-shortDescription {
+      width: 100%;
+      height: 14px;
+      display: block;
+    }
+  
+    .skeleton-badge {
+      margin: 14px 0 10px;
+    }
+  
+    .skeleton-stats {
+      margin-bottom: 10px;
+    }
+  }
+  
+  /* Desktop */
+  @media (min-width: 1024px) {
+    .skeleton-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px 16px;
+    }
+  }

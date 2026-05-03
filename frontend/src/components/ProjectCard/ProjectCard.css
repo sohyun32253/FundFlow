@@ -158,6 +158,7 @@
 
 .badge_today {
   background: #FFF4F2;
+  color: #fd5744;
 }
 
 .creator_badge {
@@ -222,12 +223,12 @@
 /* Tablet */
 @media (min-width: 768px) {
   .project_grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .project-card__inner {
     display: block;
-    padding: 20px 0 10px;
+    padding-bottom: 10px;
   }
 
   .project-card__image-wrap {
@@ -261,6 +262,7 @@
 @media (min-width: 1024px) {
   .project_grid {
     grid-template-columns: repeat(4, 1fr);
+    max-width: 1160px;
   }
 
   .adult-badge {

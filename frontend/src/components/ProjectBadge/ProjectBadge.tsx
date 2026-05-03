@@ -49,9 +49,7 @@ function formatFundingBadge(amount: number) {
 
 // 프로젝트 상태를 기반으로 뱃지 목록 생성
 function getProjectBadges(project: Project): Badge[] {
-  const days = getRemainingDays(project.timeToLive);
   const fundingLabel = formatFundingBadge(project.amount);
-
   const badges: Badge[] = [];
 
   if (project.isStarCreator) {
@@ -64,8 +62,9 @@ function getProjectBadges(project: Project): Badge[] {
       priority: 1,
     });
   }
-
-  if (days === 0) {
+  const DAY = 1000 * 60 * 60 * 24;
+  const ttl = project.timeToLive;
+  if (ttl !== null && ttl <= DAY) {
     badges.push({
       key: "todayEnd",
       type: "text",
@@ -74,8 +73,10 @@ function getProjectBadges(project: Project): Badge[] {
       priority: 2,
     });
   }
-
-  if (days !== null && days > 0) {
+  
+  if (ttl !== null && ttl > DAY) {
+    const days = Math.floor(ttl / DAY);
+  
     badges.push({
       key: "remainingDays",
       type: "text",

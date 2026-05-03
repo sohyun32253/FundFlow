@@ -78,8 +78,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 fill="none" 
                 xmlns="http://www.w3.org/2000/svg">
                     <path 
-                    fill-rule="evenodd" 
-                    clip-rule="evenodd" 
+                     fillRule="evenodd" 
+                    clipRule="evenodd" 
                     d="M0 1.07987C5.46571 -0.359958 11.5343 -0.359958 17 1.07987C17 4.2547 17 7.4295 17 10.6043C17 15.3663 8.49983 20 8.49983 20C8.49983 20 0 15.3672 0 10.6043C0 7.4295 0 4.2547 0 1.07987Z" fill="#E53C41"></path><ellipse cx="8.51052" cy="6.0047" rx="1.70486" ry="1.68902" fill="white"></ellipse><path d="M4.6748 11.7052C4.6748 9.83955 6.18721 8.32715 8.05285 8.32715H8.96862C10.8343 8.32715 12.3467 9.83955 12.3467 11.7052H4.6748Z" fill="white">
                     </path>
                   </svg>

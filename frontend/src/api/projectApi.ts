@@ -37,16 +37,14 @@ async function request<T>(
   return response.json();
 }
 
-// 페이지네이션 파라미터는 과제 2의 무한스크롤 구현에서 재사용할 수 있도록 기본값을 설정
+// 스크롤 관련 로직
 export async function fetchProjects(
   page = 1,
   limit = 10
-): Promise<Project[]> {
-  const data = await request<ProjectsResponse>(
+): Promise<ProjectsResponse> {
+  return await request<ProjectsResponse>(
     `/projects?page=${page}&limit=${limit}`
   );
-
-  return data.contents ?? [];
 }
 
 export async function addLike(projectId: string) {

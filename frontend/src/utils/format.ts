@@ -4,8 +4,15 @@ export const formatAmount = (amount: number) => {
   };
   
   export const getRemainingDaysFromTTL = (timeToLive: number | null) => {
-    if (!timeToLive || timeToLive <= 0) return "종료";
+    if (timeToLive === null || timeToLive <= 0) return "종료";
   
-    const days = Math.ceil(timeToLive / (1000 * 60 * 60 * 24));
+    const DAY = 1000 * 60 * 60 * 24;
+  
+    if (timeToLive <= DAY) {
+      return "오늘 마감";
+    }
+  
+    const days = Math.ceil(timeToLive / DAY);
+  
     return `${days}일 남음`;
   };
