@@ -90,7 +90,9 @@ npm run dev
 ### 3. 프론트엔드 실행
 
 ```bash
+cd tumblbug-web-hw
 cd frontend
+npm install
 npm start
 ```
 
