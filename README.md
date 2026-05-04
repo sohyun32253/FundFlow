@@ -72,19 +72,10 @@ src/
 ```bash
 git clone <레포지토리 URL>
 cd tumblbug-web-hw
-```
 
 ---
 
-### 2. 패키지 설치
-
-```bash
-npm install
-```
-
----
-
-### 3. Mock 서버 실행
+### 2. Mock 서버 실행
 
 ```bash
 cd server
@@ -96,7 +87,7 @@ npm run dev
 
 ---
 
-### 4. 프론트엔드 실행
+### 3. 프론트엔드 실행
 
 ```bash
 cd frontend
