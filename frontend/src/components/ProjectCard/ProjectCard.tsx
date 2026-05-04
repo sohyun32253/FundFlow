@@ -5,23 +5,28 @@ import LikeButton from "../LikeButton/LikeButton";
 import NotificationButton from "../NotificationButton/NotificationButton";
 import "./ProjectCard.css";
 
+// 공개예정 프로젝트
 interface ProjectCardProps {
   project: Project;
+  showToast: (message: string) => void;
 }
 
 interface PrelaunchedStatsProps {
   project: Project;
+  showToast: (message: string) => void;
 }
 
-function PrelaunchedStats({ project }: PrelaunchedStatsProps) {
+function PrelaunchedStats({ project, showToast }: PrelaunchedStatsProps) {
   return (
     <NotificationButton
+    showToast={showToast}
       projectId={project.id}
       notificationCount={project.notificationCount}
     />
   );
 }
 
+// 진행중인 프로젝트
 interface OngoingStatsProps {
   percentage: number;
   amount: number;
@@ -37,9 +42,9 @@ function OngoingStats({ percentage, amount, timeToLive }: OngoingStatsProps) {
       <div className="stats_wrapper">
         <div className="project-card__stats-left">
           <span className="project-card__percent">{percentage}%</span>
-          <span className="project-card__amount">{formatAmount(amount)}원</span>
+          <span className="project-card__amount fz-12">{formatAmount(amount)}원</span>
         </div>
-        <span className="project-card__d-day">
+        <span className="project-card__d-day fz-12">
           {getRemainingDaysFromTTL(timeToLive)}
         </span>
       </div>
@@ -50,7 +55,7 @@ function OngoingStats({ percentage, amount, timeToLive }: OngoingStatsProps) {
   );
 }
 
-export default function ProjectCard({ project }: ProjectCardProps) {
+export default function ProjectCard({ project, showToast }: ProjectCardProps) {
   return (
     <article
       className="project_card_article"
@@ -87,7 +92,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             )}
             {/* // 진행 중 프로젝트에만 좋아요 버튼 노출 */}
             { project.state === "ongoing" && (
-              <LikeButton projectId={project.id} defaultLiked={project.isLiked} />
+              <LikeButton projectId={project.id} defaultLiked={project.isLiked} showToast={showToast}/>
             ) }
           </div>
 
@@ -118,7 +123,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             <div className="project-card_stats_box">
               {/* 프로젝트 상태에 따라 다른 UI 렌더링 (공개예정 / 진행중) */}
               {project.state === "prelaunched" ? (
-                <PrelaunchedStats project={project} />
+                <PrelaunchedStats project={project} showToast={showToast}/>
               ) : (
                 <OngoingStats
                   percentage={project.percentage}

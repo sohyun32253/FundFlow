@@ -19,14 +19,6 @@ type Badge =
       priority: number;
     };
 
-// 남은 일수 계산 (ms → day 단위 변환)
-function getRemainingDays(timeToLive: number | null) {
-  if (timeToLive === null) return null;
-
-  const DAY = 1000 * 60 * 60 * 24;
-  return Math.floor(timeToLive / DAY);
-}
-
 // 후원 금액을 요구사항에 맞게 포맷팅
 // (구간별 단위 및 반올림 기준이 다르기 때문에 분기 처리)
 function formatFundingBadge(amount: number) {

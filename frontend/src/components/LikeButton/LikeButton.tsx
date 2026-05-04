@@ -6,6 +6,7 @@ interface LikeButtonProps {
   className?: string;
   defaultLiked?: boolean;
   onToggle?: (liked: boolean) => void;
+  showToast: (message: string) => void;
 }
 
 export default function LikeButton({
@@ -13,36 +14,39 @@ export default function LikeButton({
   className = "",
   defaultLiked = false,
   onToggle,
+  showToast
 }: LikeButtonProps) {
     const storageKey = `liked-project-${projectId}`;
 
-    const [liked, setLiked] = useState(() => {
+    const [liked, setLiked] = useState<boolean>(() => {
+      try {
         const savedLiked = localStorage.getItem(storageKey);
         return savedLiked ? JSON.parse(savedLiked) : defaultLiked;
-      });
-
-    const [toast, setToast] = useState<string | null>(null);
-
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-    setLiked((prev : any) => {
-      const next = !prev;
-
-      localStorage.setItem(storageKey, JSON.stringify(next));
-
-      setToast(
-        next
-          ? "좋아요한 프로젝트에 추가되었습니다."
-          : "취소되었습니다."
-      );
-  
-      // 2~3초 후 사라지게
-      setTimeout(() => setToast(null), 2500);
-  
-      onToggle?.(next);
-      return next;
+      } catch {
+        return defaultLiked;
+      }
     });
-  };
+    
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault();
+      e.stopPropagation();
+      console.log("showToast:", showToast);
+      setLiked((prev) => {
+        const next = !prev;
+    
+        localStorage.setItem(storageKey, JSON.stringify(next));
+    
+        showToast(
+          next
+            ? "좋아요한 프로젝트에 추가되었습니다."
+            : "취소되었습니다."
+        );
+    
+        onToggle?.(next);
+    
+        return next;
+      });
+    };
 
   const rootClassName = `like-button ${liked ? "like-button--active" : ""} ${className}`.trim();
 
@@ -78,8 +82,6 @@ export default function LikeButton({
         />
         </svg>
       )}
-      {toast && <div className="toast">{toast}</div>}
     </button>
-    
   );
 }

@@ -2,7 +2,11 @@ import ProjectGrid from "../components/ProjectGrid/ProjectGrid";
 import SkeletonGrid from "../components/ProjectGrid/SkeletonGrid";
 import useProjects from "../hooks/useProjects";
 
-function ProjectList() {
+interface ProjectListPageProps {
+  showToast: (message: string) => void;
+}
+
+function ProjectListPage({ showToast }: ProjectListPageProps) {
   const {
     projects,
     loading,
@@ -36,7 +40,7 @@ function ProjectList() {
 
       {!loading && projects.length > 0 && (
         <>
-          <ProjectGrid projects={projects} />
+          <ProjectGrid projects={projects} showToast={showToast}/>
 
           {error && (
             <div className="project-error project-error--inline">
@@ -56,4 +60,4 @@ function ProjectList() {
   );
 }
 
-export default ProjectList;
+export default ProjectListPage;

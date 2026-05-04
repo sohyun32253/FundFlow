@@ -1,7 +1,6 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { fetchProjects } from "../api/projectApi";
 import type { Project } from "../types/project";
-import { useRef } from "react";
 
 interface UseProjectsResult {
   projects: Project[];
@@ -23,6 +22,8 @@ export default function useProjects(): UseProjectsResult {
 
   const observerRef = useRef<HTMLDivElement | null>(null);
 
+  // 프로젝트 목록을 불러오는 함수
+  // 첫 페이지 로드 / 추가 로드 / 재로드를 하나의 함수로 통합 관리
   const loadProjects = useCallback(
     async (targetPage = 1, isReload = false): Promise<void> => {
       try {
@@ -60,6 +61,7 @@ export default function useProjects(): UseProjectsResult {
     []
   );
 
+  // 중복 호출 방지 및 마지막 페이지 체크 후 다음 페이지 로드
   const loadMore = useCallback(async (): Promise<void> => {
     if (loading || loadingMore || !hasMore) return;
 
@@ -75,6 +77,7 @@ export default function useProjects(): UseProjectsResult {
     void loadProjects();
   }, [loadProjects]);
 
+  // 스크롤 하단에 도달하면 다음 페이지 자동 로드 (무한 스크롤)
   useEffect(() => {
     if (!observerRef.current) return;
 
@@ -95,7 +98,6 @@ export default function useProjects(): UseProjectsResult {
 
     return () => observer.disconnect();
   }, [loadMore]);
-
 
   return {
     projects,

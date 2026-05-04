@@ -62,6 +62,7 @@
 .mobile_right_content {
   flex: 1;
   min-width: 0;
+  position: relative;
 }
 
 .project-card__content {
@@ -81,7 +82,7 @@
 
 .creator {
   margin: 0;
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .ad_box {
@@ -96,7 +97,7 @@
 }
 
 .project-card__content h2 {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.2;
   color: #1c1c1c;
@@ -174,21 +175,23 @@
 .stats_wrapper {
   display: flex;
   justify-content: space-between;
-  margin: 12px 0;
+  margin: 12px 0 8px;
 }
 
 .project-card__stats-left {
   display: flex;
+  align-items: center;
 }
 
-.project-card__stats span {
-  font-size: 14px;
+.fz-12{
+  font-size: 12px;
 }
 
 .project-card__percent {
   color: #fd5744;
   font-weight: bold;
   margin-right: 4px;
+  font-size: 14px;
 }
 
 .project-card__amount {
@@ -213,11 +216,21 @@
 }
 
 .notification_btn {
+  display: inline-block;
+  width: 45px;
+  height: 45px;
+  padding: 10px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.notification_btn span{
   display: none;
 }
 
 .notification_status {
-  margin: 12px 0;
+  margin-top:  25px;
 }
 
 /* Tablet */
@@ -240,7 +253,30 @@
     margin-bottom: 27px;
   }
 
+  .creator {
+    font-size: 12px;
+  }
+
+  .project-card__content h2 {
+    font-size: 16px;
+  }
+
+  .project-card__stats span {
+    font-size: 14px;
+  }
+
+  .notification_status {
+    margin: 12px 0;
+  }
+
   .notification_btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    position: relative;
+  }
+
+  .notification_btn span{
     display: block;
   }
 
