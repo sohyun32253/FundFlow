@@ -71,7 +71,7 @@ src/
 ### 1. 저장소 클론
 
 ```bash
-git clone <레포지토리 URL>
+git clone https://github.com/sohyun32253/tumblbug-web-hw.git
 cd tumblbug-web-hw
 ```
 ---
