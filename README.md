@@ -59,7 +59,7 @@ src/
 
 ## **개발 환경**
 
-* **Node.js**: v20.19.5(권장)
+* **Node.js**: v20.19.5 (권장)
 * **npm**: v9.x 이상
 
 > Node.js v20.19.5 환경에서 실행을 확인했습니다.
@@ -85,6 +85,8 @@ npm run dev
 ```
 
 👉 API 서버: [http://localhost:4000](http://localhost:4000)
+
+(루트 경로가 아닌 /api/projects 엔드포인트를 통해 데이터 확인 가능)
 
 ---
 
