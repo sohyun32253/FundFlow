@@ -71,7 +71,7 @@ src/
 
 ```bash
 git clone <레포지토리 URL>
-cd frontend
+cd tumblbug-web-hw
 ```
 
 ---
