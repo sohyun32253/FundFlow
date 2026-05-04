@@ -72,7 +72,7 @@ src/
 ```bash
 git clone <레포지토리 URL>
 cd tumblbug-web-hw
-
+```
 ---
 
 ### 2. Mock 서버 실행
