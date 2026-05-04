@@ -1,57 +1,159 @@
-# 프론트엔드 코딩테스트 과제
+## 📌 프로젝트 소개
 
-## 🛠️ 프로젝트 실행 방법
+텀블벅 프로젝트 리스트를 기반으로 한 프론트엔드 과제입니다.
+제공된 JSON 데이터를 API처럼 활용하여 프로젝트 목록, 카드 UI, 상태별 기능을 구현했습니다.
 
-### 1. GitHub 원격 저장소 만들기
+---
 
-1. https://github.com/new 에 접속하여 새 레포지토리를 생성해주세요.
-   - Repository name: `tumblbug-web-hw`
-   - **⚠️ 꼭 Private로 설정해주세요.**
-2. 레포지토리 화면에서 **[Settings]** > **[Collaborators]** 로 이동하고, **[Add people]** 를 클릭해주세요.
-3. `tumblbug-interview` 계정을 Collaborator로 초대해주세요.
+## 🚀 주요 기능
 
-### 2. 개발 환경 세팅하기
+* **프로젝트 리스트 조회 및 카드 UI 구성**
+* **무한 스크롤 구현 (IntersectionObserver)**
+* **좋아요 / 알림 기능 (localStorage 기반 상태 관리)**
+* **전역 Toast 메시지 처리**
+* **500 에러 재시도 로직 (공통 request 함수)**
+* **Skeleton UI 적용**
+* **반응형 레이아웃 (mobile-first)**
 
-본 과제는 지원자가 직접 개발 환경을 구성해야 합니다.
+---
 
-**필수 요구사항:**
+## 🛠 기술 스택
 
-- `React` 또는 `Next.js`를 사용하여 구현
-- `TypeScript` 사용 필수
-- UI Component Library 사용 금지 (직접 구현)
+* **React (CRA)**
+* **TypeScript**
+* **Fetch API**
+* **IntersectionObserver**
+* **CSS (반응형, 모바일 퍼스트)**
 
-**권장 절차:**
+---
+
+## 📂 프로젝트 구조
 
 ```bash
-# 1. 압축 해제 후 프로젝트 폴더로 이동
-cd tumblbug-web-hw
-
-# 2. 본인의 프론트엔드 프로젝트 생성 (예: Next.js)
-npx create-next-app@latest frontend --typescript
-# 또는 React
-npx create-react-app frontend --template typescript
-
-# 3. git 초기화 및 첫 커밋
-git init
-git add .
-git commit -m "initial commit"
-
-# 4. GitHub 저장소 연결
-git remote add origin https://github.com/<GitHub 사용자명>/tumblbug-web-hw.git
-git push -u origin main
+src/
+ ├ components/
+ │   ├ ActionButton/
+ │   ├ LikeButton/
+ │   ├ NotificationButton/
+ │   ├ ProjectBadge/
+ │   ├ ProjectCard/
+ │   ├ ProjectGrid/
+ │ 
+ ├ hooks/
+ │   └ useProjects.ts
+ ├ api/
+ │   └ projectApi.ts
+ ├ pages/
+ │   └ ProjectListPage.tsx
+ ├ types/
+ │   └ project.ts
+ ├ utils/
+ │   └ format.ts
+ └ App.tsx
 ```
 
-### 3. Mock API 서버 실행
+---
+
+## 📌 실행 방법
+
+## **개발 환경**
+
+* **Node.js**: v18.x (권장)
+* **npm**: v9.x 이상
+
+> Node.js 18 버전 환경에서 개발되었습니다.
+
+---
+
+## **프로젝트 실행**
+
+### 1. 저장소 클론
 
 ```bash
-# server 폴더로 이동
-cd server
+git clone <레포지토리 URL>
+cd frontend
+```
 
-# 의존성 설치
+---
+
+### 2. 패키지 설치
+
+```bash
 npm install
+```
 
-# 서버 실행 (포트 4000)
+---
+
+### 3. Mock 서버 실행
+
+```bash
+cd server
+npm install
+npm run dev
+```
+
+👉 API 서버: [http://localhost:4000](http://localhost:4000)
+
+---
+
+### 4. 프론트엔드 실행
+
+```bash
+cd frontend
 npm start
 ```
 
-서버가 실행되면 `http://localhost:4000`에서 API를 사용할 수 있습니다.
+👉 웹 실행: [http://localhost:3000](http://localhost:3000)
+
+---
+
+## ⚠️ 참고 사항
+
+* 서버가 실행되지 않으면 데이터가 표시되지 않습니다.
+* JSON 파일 및 `server.js`는 과제 조건에 따라 수정하지 않았습니다.
+* API는 간헐적으로 500 에러를 반환하며, 이에 대해 **최대 3회 재시도 로직**을 적용했습니다.
+
+---
+
+## 👀 구현 포인트
+
+### **무한 스크롤**
+
+* IntersectionObserver 기반으로 스크롤 하단 감지
+* 불필요한 이벤트 리스너 없이 효율적으로 구현
+
+---
+
+### **상태 관리**
+
+* `loading / loadingMore` 상태를 분리하여 UX 개선
+* 커스텀 훅(`useProjects`)으로 로직 분리
+
+---
+
+### **에러 처리**
+
+* 공통 request 함수에서 500 에러 재시도 처리
+* UI에서는 실패 상태만 표시하도록 역할 분리
+
+---
+
+### **반응형 설계**
+
+* mobile-first 기반으로 설계
+* 모바일 / 태블릿 / PC 환경 모두 대응
+
+---
+
+### **UX 개선**
+
+* Skeleton UI 적용
+* Toast 메시지를 통한 사용자 피드백 제공
+
+---
+
+## 🧠 한줄 요약
+
+👉 **데이터 기반 UI, 상태 관리, 에러 처리, UX까지 고려한 프로젝트 리스트 구현**
+
+
