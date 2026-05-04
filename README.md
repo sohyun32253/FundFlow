@@ -90,7 +90,6 @@ npm run dev
 ### 3. 프론트엔드 실행
 
 ```bash
-cd tumblbug-web-hw
 cd frontend
 npm install
 npm start
@@ -121,6 +120,13 @@ npm start
 
 * `loading / loadingMore` 상태를 분리하여 UX 개선
 * 커스텀 훅(`useProjects`)으로 로직 분리
+
+---
+
+### 상태 유지
+
+- 좋아요 및 알림 설정 상태를 localStorage를 활용하여 관리
+- 새로고침 이후에도 상태가 유지되도록 구현
 
 ---
 
