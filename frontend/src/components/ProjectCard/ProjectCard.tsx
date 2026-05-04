@@ -5,23 +5,28 @@ import LikeButton from "../LikeButton/LikeButton";
 import NotificationButton from "../NotificationButton/NotificationButton";
 import "./ProjectCard.css";
 
+// 공개예정 프로젝트
 interface ProjectCardProps {
   project: Project;
+  showToast: (message: string) => void;
 }
 
 interface PrelaunchedStatsProps {
   project: Project;
+  showToast: (message: string) => void;
 }
 
-function PrelaunchedStats({ project }: PrelaunchedStatsProps) {
+function PrelaunchedStats({ project, showToast }: PrelaunchedStatsProps) {
   return (
     <NotificationButton
+    showToast={showToast}
       projectId={project.id}
       notificationCount={project.notificationCount}
     />
   );
 }
 
+// 진행중인 프로젝트
 interface OngoingStatsProps {
   percentage: number;
   amount: number;
@@ -37,9 +42,9 @@ function OngoingStats({ percentage, amount, timeToLive }: OngoingStatsProps) {
       <div className="stats_wrapper">
         <div className="project-card__stats-left">
           <span className="project-card__percent">{percentage}%</span>
-          <span className="project-card__amount">{formatAmount(amount)}원</span>
+          <span className="project-card__amount fz-12">{formatAmount(amount)}원</span>
         </div>
-        <span className="project-card__d-day">
+        <span className="project-card__d-day fz-12">
           {getRemainingDaysFromTTL(timeToLive)}
         </span>
       </div>
@@ -50,7 +55,7 @@ function OngoingStats({ percentage, amount, timeToLive }: OngoingStatsProps) {
   );
 }
 
-export default function ProjectCard({ project }: ProjectCardProps) {
+export default function ProjectCard({ project, showToast }: ProjectCardProps) {
   return (
     <article
       className="project_card_article"
@@ -78,8 +83,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 fill="none" 
                 xmlns="http://www.w3.org/2000/svg">
                     <path 
-                    fill-rule="evenodd" 
-                    clip-rule="evenodd" 
+                     fillRule="evenodd" 
+                    clipRule="evenodd" 
                     d="M0 1.07987C5.46571 -0.359958 11.5343 -0.359958 17 1.07987C17 4.2547 17 7.4295 17 10.6043C17 15.3663 8.49983 20 8.49983 20C8.49983 20 0 15.3672 0 10.6043C0 7.4295 0 4.2547 0 1.07987Z" fill="#E53C41"></path><ellipse cx="8.51052" cy="6.0047" rx="1.70486" ry="1.68902" fill="white"></ellipse><path d="M4.6748 11.7052C4.6748 9.83955 6.18721 8.32715 8.05285 8.32715H8.96862C10.8343 8.32715 12.3467 9.83955 12.3467 11.7052H4.6748Z" fill="white">
                     </path>
                   </svg>
@@ -87,7 +92,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             )}
             {/* // 진행 중 프로젝트에만 좋아요 버튼 노출 */}
             { project.state === "ongoing" && (
-              <LikeButton projectId={project.id} defaultLiked={project.isLiked} />
+              <LikeButton projectId={project.id} defaultLiked={project.isLiked} showToast={showToast}/>
             ) }
           </div>
 
@@ -118,7 +123,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             <div className="project-card_stats_box">
               {/* 프로젝트 상태에 따라 다른 UI 렌더링 (공개예정 / 진행중) */}
               {project.state === "prelaunched" ? (
-                <PrelaunchedStats project={project} />
+                <PrelaunchedStats project={project} showToast={showToast}/>
               ) : (
                 <OngoingStats
                   percentage={project.percentage}

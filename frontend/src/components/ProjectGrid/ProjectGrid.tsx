@@ -4,9 +4,10 @@ import "../ProjectCard/ProjectCard.css";
 
 interface ProjectGridProps {
   projects: Project[];
+  showToast: (message: string) => void;
 }
 
-export default function ProjectGrid({ projects }: ProjectGridProps) {
+export default function ProjectGrid({ projects, showToast }: ProjectGridProps) {
   return (
     <section
     className="project_grid"
@@ -17,7 +18,7 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
     }}
     >
       {projects.map((project) => (
-        <ProjectCard key={project.id} project={project} />
+        <ProjectCard key={project.id} project={project} showToast={showToast} />
       ))}
     </section>
   );

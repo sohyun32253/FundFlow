@@ -9,6 +9,7 @@ interface NotificationButtonProps {
     defaultNotified?: boolean;
     onToggle?: (notified: boolean) => void;
     notificationCount: number;
+    showToast: (message: string) => void;
   }
 
 export default function NotificationButton({  
@@ -16,56 +17,64 @@ export default function NotificationButton({
     className = "",
     defaultNotified = false,
     onToggle,
-    notificationCount
+    notificationCount,
+    showToast
 }: NotificationButtonProps) {
     const storageKey = `notified-project-${projectId}`;
 
-    const [isnotification, setIsNotification] = useState(() => {
-        const savedNotified = localStorage.getItem(storageKey);
-        return savedNotified ? JSON.parse(savedNotified) : defaultNotified;
-      });
+    const [isNotification, setIsNotification] = useState<boolean>(() => {
+      try {
+        const saved = localStorage.getItem(storageKey);
+        return saved ? JSON.parse(saved) : defaultNotified;
+      } catch {
+        return defaultNotified;
+      }
+    });
 
-    const [toast, setToast] = useState<string | null>(null);
-
-    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault();   // a 태그 기본 이동 막기
-        e.stopPropagation();  // 부모로 이벤트 전파 막기
+      const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        e.stopPropagation();
       
-        setIsNotification((prev : any) => {
+        setIsNotification((prev: boolean) => {
           const next = !prev;
+      
           localStorage.setItem(storageKey, JSON.stringify(next));
-          setToast(next ? "알림신청이 완료되었습니다." : "알림신청이 취소되었습니다.");
-          setTimeout(() => setToast(null), 3500);
+      
+          showToast(
+            next
+              ? "알림신청이 완료되었습니다."
+              : "알림신청이 취소되었습니다."
+          );
+      
           onToggle?.(next);
+      
           return next;
         });
       };
 
   return (
+  <>
     <div className="notification_container">
       <div className="notification_status">{notificationCount.toLocaleString()}명 알림신청 중</div>
-      
-      <button 
-      type="button" 
-      onClick={handleClick} 
-      className={`notification_btn ${isnotification ? "notification_btn--active" : ""} ${className}`.trim()}>
-        {/* 버튼 기본설정 */}
-        { isnotification == false && (
-        <div className="notifi_default">
-          <img src={notificationIcon} alt="" aria-hidden="true" />
-          <span>알림신청</span>
-        </div>
+        <button
+        type="button"
+        onClick={handleClick}
+        className={`notification_btn ${isNotification ? "notification_btn--active" : ""} ${className}`.trim()}
+        >
+        {!isNotification && (
+          <div className="notifi_default">
+            <img src={notificationIcon} alt="" aria-hidden="true" />
+            <span>알림신청</span>
+          </div>
         )}
-
-        {/* 버튼 클릭 시 설정 */}
-        { isnotification == true && (
-        <div className="notifi_ing">
+        {isNotification && (
+          <div className="notifi_ing">
             <img src={notificationingIcon} alt="" aria-hidden="true" />
             <span>알림신청 중</span>
-        </div>
+          </div>
         )}
-     </button>
-        {toast && <div className="toast">{toast}</div>}
+        </button>
     </div>
+  </>
   );
 }
