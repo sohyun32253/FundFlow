@@ -1,0 +1,77 @@
+openapi: 3.0.0
+info:
+  title: FundFlow API
+  version: 1.0.0
+  description: Crowdfunding project mock API
+
+servers:
+  - url: http://localhost:4000
+
+paths:
+  /api/projects:
+    get:
+      summary: 프로젝트 목록 조회
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+          example: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          example: 12
+      responses:
+        "200":
+          description: 프로젝트 목록 조회 성공
+
+  /api/projects/{id}/like:
+    post:
+      summary: 프로젝트 좋아요 추가
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: 좋아요 추가 성공
+
+    delete:
+      summary: 프로젝트 좋아요 취소
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: 좋아요 취소 성공
+
+  /api/projects/{id}/notification:
+    post:
+      summary: 프로젝트 알림 신청
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: 알림 신청 성공
+
+    delete:
+      summary: 프로젝트 알림 취소
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: 알림 취소 성공

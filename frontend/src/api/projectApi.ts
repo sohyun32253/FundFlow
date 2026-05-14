@@ -49,7 +49,7 @@ async function request<T>(
 // 프로젝트 목록 조회
 export async function fetchProjects(
   page = 1,
-  limit = 10
+  limit = 12
 ): Promise<ProjectsResponse> {
   return request<ProjectsResponse>(
     `/projects?page=${page}&limit=${limit}`

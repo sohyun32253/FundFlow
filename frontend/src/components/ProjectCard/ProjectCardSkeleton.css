@@ -2,14 +2,15 @@
 .skeleton-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 20px 12px;
+    gap: 20px;
   }
   
   .skeleton-card {
     display: flex;
     flex-direction: row;
-    gap: 12px;
+    gap: 20px;
     align-items: flex-start;
+    padding: 10px;
   }
   
   /* 공통 속성 */

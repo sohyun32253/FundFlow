@@ -40,20 +40,27 @@ function ProjectListPage({ showToast }: ProjectListPageProps) {
 
       {!loading && projects.length > 0 && (
         <>
-          <ProjectGrid projects={projects} showToast={showToast}/>
+         <ProjectGrid projects={projects} showToast={showToast} />
 
-          {error && (
-            <div className="project-error project-error--inline">
-              <p>{error}</p>
-              <button type="button" onClick={reload}>
-                다시 시도
-              </button>
-            </div>
-          )}
+{error && (
+  <div className="project-error project-error--inline">
+    <p>{error}</p>
+    <button type="button" onClick={reload}>
+      다시 시도
+    </button>
+  </div>
+)}
 
-          {loadingMore && <SkeletonGrid />}
+{loadingMore && <SkeletonGrid />}
 
-          {hasMore && !loadingMore && <div ref={observerRef} />}
+{hasMore && (
+  <div
+    ref={observerRef}
+    style={{
+      height: "40px",
+    }}
+  />
+)}
         </>
       )}
     </main>

@@ -1,20 +1,21 @@
 .notification_btn{
     border-radius: 6px;
-    border: 1px solid #fd5744;
+    border: 1px solid #3dcbb8;
     width: 100%;
     background: none;
     cursor: pointer;
     padding: 10px 40px;
+    font-weight: 500;
   }
 
   .notification_container{
-    color: #fd5744;
+    color: #3dcbb8;
     font-weight: bold;
     font-size: 14px;
   }
 
   .notification_btn--active {
-    border-color: #e4e4e4; 
+    border-color: #cacaca; 
   }
 
   .notification_btn > div{
@@ -24,7 +25,7 @@
   }
 
   .notifi_default{
-    color: #fd5744;
+    color: #3dcbb8;
   }
 
   .notifi_ing{

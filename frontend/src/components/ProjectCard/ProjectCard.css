@@ -7,8 +7,17 @@
 
 .project_card_article {
   margin: 0;
-  padding: 0;
+  padding: 10px;
   flex: 0 0 auto;
+  transition:
+  transform 0.2s ease,
+  box-shadow 0.2s ease;
+  border-radius: 8px;
+}
+
+.project_card_article:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
 .project_card_container {
@@ -22,7 +31,7 @@
   padding: 0;
 }
 
-.project_card {
+.project-card {
   width: 100%;
   margin-right: 12px;
 }
@@ -86,8 +95,8 @@
 }
 
 .ad_box {
-  border: 1px solid #e4e4e4;
-  color: #e4e4e4;
+  border: 1px solid #d1d1d1;
+  color: #d2d2d2;
   border-radius: 5px;
   font-size: 8px;
   display: flex;
@@ -98,9 +107,9 @@
 
 .project-card__content h2 {
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1.2;
-  color: #1c1c1c;
+  color: #3e3e3e;
   margin: 0 0 6px;
 
   display: -webkit-box;
@@ -114,6 +123,8 @@
   margin: 0;
   overflow: hidden;
   font-size: 13px;
+  line-height: 1.45;
+  color: #797979;
 }
 
 /* 뱃지 모음 */
@@ -148,6 +159,8 @@
   background: #e4e4e4;
   white-space: nowrap;
   flex-shrink: 0;
+  letter-spacing: 0.3px;
+  font-weight: 700;
 }
 
 .etc_badge,
@@ -158,13 +171,18 @@
 }
 
 .badge_today {
-  background: #FFF4F2;
-  color: #fd5744;
+  background: #eafffb;
+  color: #3DD6B5;
 }
 
-.creator_badge {
-  width: 60px;
-  height: 18px;
+.badge_star {
+background: linear-gradient(
+  135deg,
+  #9fdfd9 0%,
+  #6eb3ab 100%
+);
+
+  color: #ffffff;
 }
 
 .project-card__stats {
@@ -188,7 +206,7 @@
 }
 
 .project-card__percent {
-  color: #fd5744;
+  color: #3dcbb8;
   font-weight: bold;
   margin-right: 4px;
   font-size: 14px;
@@ -207,12 +225,12 @@
   width: 100%;
   height: 4px;
   overflow: hidden;
-  background: #929292;
+  background: #c0c0c0;
 }
 
 .progress_gauge {
   height: 100%;
-  background: #fd5744;
+  background: #59e7d0;
 }
 
 .notification_btn {
@@ -281,7 +299,7 @@
   }
 
   .project-card__content p {
-    color: #545454;
+    color: #666;
     margin: 8px 0 4px;
   }
   

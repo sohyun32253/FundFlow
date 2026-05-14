@@ -61,9 +61,7 @@ export default function ProjectCard({ project, showToast }: ProjectCardProps) {
       className="project_card_article"
       // 카드 전체 클릭 시 상세 페이지로 이동
       // 내부 링크 클릭 시에는 이벤트 전파를 막아 중복 이동을 방지
-      onClick={() => {
-        window.location.href = `https://tumblbug.com/${project.permalink}`;
-      }}
+        onClick={(e) => e.preventDefault()}
       style={{ cursor: "pointer" }}
     >
       <div className="project_card_container">
@@ -102,7 +100,7 @@ export default function ProjectCard({ project, showToast }: ProjectCardProps) {
                 <p>
                   <a
                     href={`https://tumblbug.com/u/${project.creatorPermalink}`}
-                    onClick={(e) => e.stopPropagation()}
+                    onClick={(e) => e.preventDefault()}
                     className="creator"
                   >
                     {project.creatorName}

@@ -1,17 +1,8 @@
 import type { Project } from "../../types/project";
-import GoodCreatorBadge from "../../assets/good_creator.png";
 
 // 뱃지 타입: 이미지형 / 텍스트형을 구분하여 렌더링 처리
 type Badge =
-  | {
-      key: string;
-      type: "image";
-      image: string;
-      alt: string;
-      className: string;
-      priority: number; // 우선순위 (낮을수록 먼저 노출)
-    }
-  | {
+ {
       key: string;
       type: "text";
       label: string;
@@ -47,9 +38,8 @@ function getProjectBadges(project: Project): Badge[] {
   if (project.isStarCreator) {
     badges.push({
       key: "starCreator",
-      type: "image",
-      image: GoodCreatorBadge,
-      alt: "좋은창작자",
+      type: "text",
+      label: "FEATURED",
       className: "badge_star",
       priority: 1,
     });
@@ -117,23 +107,11 @@ export default function ProjectBadge({ project }: ProjectBadgesProps) {
   return (
     <div className="badge_wrapper">
       <div className="project_badges">
-        {badges.map((badge) =>
-          badge.type === "image" ? (
-            // 이미지형 뱃지 (좋은 창작자)
-            <div key={badge.key} className="creator_badge">
-              <img
-                src={badge.image}
-                alt={badge.alt}
-                className={`creator_badge ${badge.className}`}
-              />
-            </div>
-          ) : (
-            // 텍스트형 뱃지
-            <div key={badge.key} className={`etc_badge ${badge.className}`}>
-              <span className="project_badge">{badge.label}</span>
-            </div>
-          )
-        )}
+{badges.map((badge) => (
+  <div key={badge.key} className={`etc_badge ${badge.className}`}>
+    <span className="project_badge">{badge.label}</span>
+  </div>
+))}
       </div>
     </div>
   );

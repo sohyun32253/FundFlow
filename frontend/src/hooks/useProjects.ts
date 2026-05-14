@@ -35,7 +35,7 @@ export default function useProjects(): UseProjectsResult {
 
         setError("");
 
-        const data = await fetchProjects(targetPage);
+        const data = await fetchProjects(targetPage, 12);
 
         const nextProjects = data.contents ?? [];
         
@@ -46,7 +46,7 @@ export default function useProjects(): UseProjectsResult {
         );
         
         setHasMore(data.hasNext);
-        setPage(data.page);
+        setPage(targetPage + 1);
       } catch (err: unknown) {
         setError(
           err instanceof Error
@@ -65,7 +65,7 @@ export default function useProjects(): UseProjectsResult {
   const loadMore = useCallback(async (): Promise<void> => {
     if (loading || loadingMore || !hasMore) return;
 
-    await loadProjects(page + 1);
+    await loadProjects(page);
   }, [loading, loadingMore, hasMore, page, loadProjects]);
 
   const reload = useCallback(async (): Promise<void> => {

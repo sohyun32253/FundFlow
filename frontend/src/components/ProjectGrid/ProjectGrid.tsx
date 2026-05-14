@@ -13,7 +13,7 @@ export default function ProjectGrid({ projects, showToast }: ProjectGridProps) {
     className="project_grid"
     style={{
       display: "grid",
-      gap: "16px",
+      gap: "20px",
       margin: "0 auto",
     }}
     >
