@@ -1,4 +1,6 @@
 import type { ProjectsResponse } from "../types/project";
+import type { Project } from "../types/project";
+import mockProjects from "../mock/projects.json"
 
 const BASE_URL = "http://localhost:4000/api";
 const MAX_RETRY_COUNT = 3;
@@ -51,23 +53,66 @@ export async function fetchProjects(
   page = 1,
   limit = 12
 ): Promise<ProjectsResponse> {
+  if (process.env.NODE_ENV === "production") {
+    const projects = mockProjects as Project[];
+
+    const total = projects.length;
+    const totalPages = Math.ceil(total / limit);
+    const start = (page - 1) * limit;
+    const end = start + limit;
+
+    return {
+      total,
+      totalPages,
+      pageSize: limit,
+      hasPrevious: page > 1,
+      hasNext: page < totalPages,
+      page,
+      contents: projects.slice(start, end),
+    };
+  }
+
   return request<ProjectsResponse>(
     `/projects?page=${page}&limit=${limit}`
   );
 }
 
 export async function addLike(projectId: string) {
-  return request(`/projects/${projectId}/like`, { method: "POST" });
+  if (process.env.NODE_ENV === "production") {
+    return Promise.resolve({ success: true });
+  }
+
+  return request(`/projects/${projectId}/like`, {
+    method: "POST",
+  });
 }
 
 export async function removeLike(projectId: string) {
-  return request(`/projects/${projectId}/like`, { method: "DELETE" });
+  if (process.env.NODE_ENV === "production") {
+    return Promise.resolve({ success: true });
+  }
+
+  return request(`/projects/${projectId}/like`, {
+    method: "DELETE",
+  });
 }
 
 export async function addNotification(projectId: string) {
-  return request(`/projects/${projectId}/notification`, { method: "POST" });
+  if (process.env.NODE_ENV === "production") {
+    return Promise.resolve({ success: true });
+  }
+
+  return request(`/projects/${projectId}/notification`, {
+    method: "POST",
+  });
 }
 
 export async function removeNotification(projectId: string) {
-  return request(`/projects/${projectId}/notification`, { method: "DELETE" });
+  if (process.env.NODE_ENV === "production") {
+    return Promise.resolve({ success: true });
+  }
+
+  return request(`/projects/${projectId}/notification`, {
+    method: "DELETE",
+  });
 }

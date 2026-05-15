@@ -25,7 +25,14 @@ function ProjectListPage({ showToast }: ProjectListPageProps) {
         maxWidth: "1160px",
       }}
     >
-      <h1 style={{ marginTop: 0 }}>프로젝트 목록</h1>
+      <h1 
+        style={{ marginTop: 0,
+         color: "#3ac6a8",
+         fontWeight: 600,
+         letterSpacing: "-0.02em"
+        }}
+        >FundFlow
+        </h1>
 
       {loading && <SkeletonGrid />}
 
