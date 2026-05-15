@@ -54,6 +54,8 @@ export async function fetchProjects(
   limit = 12
 ): Promise<ProjectsResponse> {
   if (process.env.NODE_ENV === "production") {
+    await delay(600);
+
     const projects = mockProjects as Project[];
 
     const total = projects.length;
