@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/FundFlow/static/css/main.e7c4513f.css",
+    "main.js": "/FundFlow/static/js/main.600c1bc4.js",
+    "index.html": "/FundFlow/index.html",
+    "static/media/icon_notification_ing.svg": "/FundFlow/static/media/icon_notification_ing.6c336cd60c76185f17a2867e65f088f4.svg",
+    "static/media/icon_notification.svg": "/FundFlow/static/media/icon_notification.55fcdc46b66a6837643628bc8823bf65.svg",
+    "main.e7c4513f.css.map": "/FundFlow/static/css/main.e7c4513f.css.map",
+    "main.600c1bc4.js.map": "/FundFlow/static/js/main.600c1bc4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e7c4513f.css",
+    "static/js/main.600c1bc4.js"
+  ]
+}
